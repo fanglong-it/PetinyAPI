@@ -1,0 +1,30 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: E:\Source Code\.Net & C# Programing\Learn\api\PetinyAPI\Publish\
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (291ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[Id], [c].[Name]
+      FROM [Categories] AS [c]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (320ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[Description], [a].[Name]
+      FROM [AnimalTypes] AS [a]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (368ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [Animals] ([AnimalTypeId], [Description], [Name])
+      OUTPUT INSERTED.[Id]
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (278ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [a].[Id], [a].[AnimalTypeId], [a].[Description], [a].[Name], [a0].[Id], [a0].[Description], [a0].[Name], [o].[Id], [o].[AnimalId], [o].[Date], [o].[Description], [o].[UserId]
+      FROM [Animals] AS [a]
+      INNER JOIN [AnimalTypes] AS [a0] ON [a].[AnimalTypeId] = [a0].[Id]
+      LEFT JOIN [Owners] AS [o] ON [a].[Id] = [o].[AnimalId]
+      ORDER BY [a].[Id], [a0].[Id]
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
