@@ -21,6 +21,8 @@ namespace PetinyAPI.Models
 
         public string? UrlImage { get; set; }
 
+        public Boolean? Status { get; set; }
+
 
         //Key for User
         public int UserId { get; set; }

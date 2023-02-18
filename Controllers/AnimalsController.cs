@@ -28,10 +28,19 @@ namespace PetinyAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
-            return await _context.Animals
+
+            
+            var animals = await _context.Animals
                 .Include(type => type.AnimalType)
                 .Include(owners => owners.Owners)
                 .ToListAsync();
+
+            foreach(var animal in animals)
+            {
+                animal.Age = Common.calculateAge(animal.DateOfBirth).ToString();
+            }
+
+            return animals;
         }
 
         // GET: api/Animals/5

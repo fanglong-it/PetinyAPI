@@ -59,6 +59,20 @@ namespace PetinyAPI.Controllers
             return service;
         }
 
+        //[HttpGet("GetSpecialService")]
+        //public async Task<ActionResult<IEnumerable<Service>>> GetSpecialService()
+        //{
+
+
+        //    var service =  _context.Services
+        //    if (service == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return service;
+        //}
+
 
         // PUT: api/Services/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -123,5 +137,8 @@ namespace PetinyAPI.Controllers
         {
             return _context.Services.Any(e => e.Id == id);
         }
+
+
+
     }
 }

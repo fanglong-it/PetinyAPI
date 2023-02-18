@@ -15,7 +15,6 @@ namespace PetinyAPI.Models
 
         public int Qty { get; set; }
 
-
         //Key for Order
         public int OrderId { get; set; }
         [JsonIgnore]

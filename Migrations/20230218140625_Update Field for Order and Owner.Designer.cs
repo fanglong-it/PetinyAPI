@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetinyAPI.Models;
 
@@ -11,9 +12,11 @@ using PetinyAPI.Models;
 namespace PetinyAPI.Migrations
 {
     [DbContext(typeof(PetinyDbContext))]
-    partial class PetinyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230218140625_Update Field for Order and Owner")]
+    partial class UpdateFieldforOrderandOwner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
