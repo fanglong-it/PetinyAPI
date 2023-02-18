@@ -19,8 +19,12 @@ namespace PetinyAPI.Models
 
         public ICollection<OrderDetail>? OrderDetails { get; set; }
 
-        public ICollection<Category>? Categories { get; set; }
         
+        public int CategoryId { get; set; }
+        
+        [JsonIgnore]
+        public Category? Category { get; set; }
+
         public int ShopId { get; set; }
 
         [JsonIgnore]

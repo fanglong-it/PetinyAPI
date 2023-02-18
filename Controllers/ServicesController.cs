@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace PetinyAPI.Controllers
         public async Task<ActionResult<IEnumerable<Service>>> GetServices()
         {
             return await _context.Services
-                .Include(s => s.Categories)
+                .Include(s => s.Category)
                 .ToListAsync();
         }
 
@@ -34,6 +35,21 @@ namespace PetinyAPI.Controllers
         public async Task<ActionResult<Service>> GetService(int id)
         {
             var service = await _context.Services.FindAsync(id);
+
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return service;
+        }
+
+
+        [HttpGet("GetServiceByCate/{id}")]
+        public async Task<ActionResult<IEnumerable<Service>>> GetServiceByCate(int id)
+        {
+            var service = await _context.Services
+                .Where(x => x.CategoryId == id).ToListAsync();
 
             if (service == null)
             {
@@ -79,7 +95,8 @@ namespace PetinyAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Service>> PostService(Service service)
         {
-            _context.Services.Add(service);
+            _context.Services
+                .Add(service);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetService", new { id = service.Id }, service);

@@ -11,7 +11,8 @@ namespace PetinyAPI.Models
 
         public string? UrlImage { get; set; }
 
-        [JsonIgnore]
+        public Boolean IsCareService { get; set; }
+
         public ICollection<Service>? Services { get; set; }
     
     }

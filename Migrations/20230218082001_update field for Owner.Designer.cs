@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetinyAPI.Models;
 
@@ -10,9 +11,11 @@ using PetinyAPI.Models;
 namespace PetinyAPI.Migrations
 {
     [DbContext(typeof(PetinyDbContext))]
-    partial class PetinyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230218082001_update field for Owner")]
+    partial class updatefieldforOwner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,6 +23,21 @@ namespace PetinyAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CategoryService", b =>
+                {
+                    b.Property<int>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServicesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriesId", "ServicesId");
+
+                    b.HasIndex("ServicesId");
+
+                    b.ToTable("CategoryService");
+                });
 
             modelBuilder.Entity("PetinyAPI.Models.Animal", b =>
                 {
@@ -86,9 +104,6 @@ namespace PetinyAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsCareService")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -252,9 +267,6 @@ namespace PetinyAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -277,8 +289,6 @@ namespace PetinyAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ShopId");
 
@@ -342,6 +352,21 @@ namespace PetinyAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("CategoryService", b =>
+                {
+                    b.HasOne("PetinyAPI.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetinyAPI.Models.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PetinyAPI.Models.Animal", b =>
@@ -425,19 +450,11 @@ namespace PetinyAPI.Migrations
 
             modelBuilder.Entity("PetinyAPI.Models.Service", b =>
                 {
-                    b.HasOne("PetinyAPI.Models.Category", "Category")
-                        .WithMany("Services")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PetinyAPI.Models.Shop", "Shop")
                         .WithMany("Services")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
 
                     b.Navigation("Shop");
                 });
@@ -450,11 +467,6 @@ namespace PetinyAPI.Migrations
             modelBuilder.Entity("PetinyAPI.Models.AnimalType", b =>
                 {
                     b.Navigation("Animals");
-                });
-
-            modelBuilder.Entity("PetinyAPI.Models.Category", b =>
-                {
-                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("PetinyAPI.Models.Order", b =>
