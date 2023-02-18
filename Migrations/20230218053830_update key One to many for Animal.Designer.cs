@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetinyAPI.Models;
 
@@ -10,9 +11,11 @@ using PetinyAPI.Models;
 namespace PetinyAPI.Migrations
 {
     [DbContext(typeof(PetinyDbContext))]
-    partial class PetinyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230218053830_update key One to many for Animal")]
+    partial class updatekeyOnetomanyforAnimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +64,6 @@ namespace PetinyAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UrlImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AnimalTypeId");
@@ -101,9 +101,6 @@ namespace PetinyAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -281,9 +278,6 @@ namespace PetinyAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UrlImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ShopId");
@@ -318,10 +312,6 @@ namespace PetinyAPI.Migrations
                     b.Property<double>("Rate")
                         .HasColumnType("float");
 
-                    b.Property<string>("UrlImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Shop");
@@ -346,9 +336,6 @@ namespace PetinyAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -12,6 +12,9 @@ namespace PetinyAPI.Models
         public string Description { get; set; }
         public string Longtidute { get; set; }
         public string Latidute { get; set; }
+
+        public string UrlImage { get; set; }
+
         public ICollection<Service> Services { get; set; }
 
     }

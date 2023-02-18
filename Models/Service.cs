@@ -13,6 +13,7 @@ namespace PetinyAPI.Models
 
         public double Price { get; set; }
 
+        public string? UrlImage { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set; }
 
         public ICollection<Category>? Categories { get; set; }

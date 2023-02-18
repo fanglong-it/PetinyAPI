@@ -13,7 +13,7 @@ namespace PetinyAPI.Models
         public string Description { get; set; }
 
         [JsonIgnore]
-        public Animal Animal { get; set; }
+        public ICollection<Animal> Animals { get; set; }
 
 
     }

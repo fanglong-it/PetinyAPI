@@ -18,6 +18,7 @@ namespace PetinyAPI.Models
         public DbSet<Owner> Owners{ get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<PetinyAPI.Models.PaymentMethod> PaymentMethod { get; set; }
+        public DbSet<PetinyAPI.Models.Shop> Shop { get; set; }
         
        
     

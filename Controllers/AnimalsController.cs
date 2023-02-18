@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using NuGet.Versioning;
+using PetinyAPI.Commons;
 using PetinyAPI.Models;
 
 namespace PetinyAPI.Controllers
@@ -85,6 +87,9 @@ namespace PetinyAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
         {
+
+            animal.Age = Common.calculateAge(animal.DateOfBirth).ToString();
+
             _context.Animals.Add(animal);
             await _context.SaveChangesAsync();
 

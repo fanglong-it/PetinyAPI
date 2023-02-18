@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetinyAPI.Models
 {
@@ -14,8 +15,9 @@ namespace PetinyAPI.Models
         public string Age { get; set; }
         public string? Description { get; set; }
 
-        public int AnimalTypeId { get; set; }
+        public string ? UrlImage { get; set; }
 
+        public int AnimalTypeId { get; set; }
         public AnimalType? AnimalType { get; set; }
 
         public ICollection<Owner>? Owners { get; set; }
