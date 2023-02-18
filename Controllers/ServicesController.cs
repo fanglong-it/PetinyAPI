@@ -59,19 +59,20 @@ namespace PetinyAPI.Controllers
             return service;
         }
 
-        //[HttpGet("GetSpecialService")]
-        //public async Task<ActionResult<IEnumerable<Service>>> GetSpecialService()
-        //{
+        [HttpGet("GetSpecialService")]
+        public async Task<ActionResult<IEnumerable<Service>>> GetSpecialService()
+        {
 
 
-        //    var service =  _context.Services
-        //    if (service == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var service = await _context.Services.OrderByDescending(x => x.OrderDetails.Sum(od => od.Qty)).Take(5).ToListAsync();
 
-        //    return service;
-        //}
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return service;
+        }
 
 
         // PUT: api/Services/5
