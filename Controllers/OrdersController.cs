@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,9 @@ namespace PetinyAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.Orders
+                .Include(x => x.OrderDetails)
+                .ToListAsync();
         }
 
         // GET: api/Orders/5
@@ -79,7 +82,6 @@ namespace PetinyAPI.Controllers
         {
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
 

@@ -15,15 +15,17 @@ namespace PetinyAPI.Models
 
         public int Qty { get; set; }
 
+
+
         //Key for Order
         public int OrderId { get; set; }
+
         [JsonIgnore]
         public Order? Order { get; set; }
 
 
         //Key for Service
         public int ServiceId { get; set; }
-        [JsonIgnore]
         public Service? Service { get; set; }
 
     }

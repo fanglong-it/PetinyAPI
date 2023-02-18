@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace PetinyAPI.Models
@@ -17,14 +18,13 @@ namespace PetinyAPI.Models
 
         [JsonIgnore]
         public User? User { get; set; }
-     
+
+
         //Key for payment
-        public int PaymentId { get; set; }
+        //public int PaymentId { get; set; }
 
-        [JsonIgnore]
+        [ForeignKey("PaymentId")]
         public Payment? Payment { get; set; }
-
-
 
 
         //key for OderDetail

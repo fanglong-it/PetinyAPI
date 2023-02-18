@@ -17,6 +17,7 @@ namespace PetinyAPI.Models
 
         public Boolean IsCareService { get; set; }
 
+        [JsonIgnore]
         public ICollection<OrderDetail>? OrderDetails { get; set; }
 
         

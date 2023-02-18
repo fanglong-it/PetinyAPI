@@ -64,15 +64,12 @@ namespace PetinyAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UrlImage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -113,7 +110,7 @@ namespace PetinyAPI.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnType("int");
 
                     b.Property<double>("TotalAmount")
@@ -124,8 +121,7 @@ namespace PetinyAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentId")
-                        .IsUnique();
+                    b.HasIndex("PaymentId");
 
                     b.HasIndex("UserId");
 
@@ -362,10 +358,8 @@ namespace PetinyAPI.Migrations
             modelBuilder.Entity("PetinyAPI.Models.Order", b =>
                 {
                     b.HasOne("PetinyAPI.Models.Payment", "Payment")
-                        .WithOne("Order")
-                        .HasForeignKey("PetinyAPI.Models.Order", "PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Orders")
+                        .HasForeignKey("PaymentId");
 
                     b.HasOne("PetinyAPI.Models.User", "User")
                         .WithMany("Orders")
@@ -468,7 +462,7 @@ namespace PetinyAPI.Migrations
 
             modelBuilder.Entity("PetinyAPI.Models.Payment", b =>
                 {
-                    b.Navigation("Order");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("PetinyAPI.Models.PaymentMethod", b =>
