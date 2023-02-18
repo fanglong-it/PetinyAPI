@@ -51,6 +51,22 @@ namespace PetinyAPI.Controllers
             return animal;
         }
 
+        [HttpGet("AnimalByCate/{id}")]
+        public async Task<ActionResult<List<Animal>>> GetAnimalByCate(int id)
+        {
+            var animal = await _context.Animals
+                .Where(x => x.AnimalTypeId == id)
+                .Include(x => x.AnimalType)
+                .ToListAsync();
+
+            if (animal == null)
+            {
+                return NotFound();
+            }
+
+            return animal;
+        }
+
         // PUT: api/Animals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

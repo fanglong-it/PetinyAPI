@@ -7,12 +7,12 @@ namespace PetinyAPI.Models
         [Key]
         public int Id { get; set; }
 
-        public string Date { get; set; }
+        public string? Date { get; set; }
 
         public double Total { get; set; }
         
         //Key for Order
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
 
 
         public int PaymentMethodId { get; set; }

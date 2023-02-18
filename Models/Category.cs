@@ -11,7 +11,6 @@ namespace PetinyAPI.Models
 
         public string? UrlImage { get; set; }
 
-
         [JsonIgnore]
         public ICollection<Service>? Services { get; set; }
     

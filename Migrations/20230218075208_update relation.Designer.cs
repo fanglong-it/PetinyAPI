@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetinyAPI.Models;
 
@@ -10,9 +11,11 @@ using PetinyAPI.Models;
 namespace PetinyAPI.Migrations
 {
     [DbContext(typeof(PetinyDbContext))]
-    partial class PetinyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230218075208_update relation")]
+    partial class updaterelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,9 +199,6 @@ namespace PetinyAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Request")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")

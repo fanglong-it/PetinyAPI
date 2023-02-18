@@ -15,7 +15,7 @@ namespace PetinyAPI.Models
         public string UrlImage { get; set; }
 
         [JsonIgnore]
-        public ICollection<Animal> Animals { get; set; }
+        public ICollection<Animal>? Animals { get; set; }
 
 
     }

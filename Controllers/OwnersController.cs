@@ -41,6 +41,21 @@ namespace PetinyAPI.Controllers
             return owner;
         }
 
+        // GET: api/Owners/5
+        [HttpGet("OwnerByCate/{id}")]
+        public async Task<ActionResult<IEnumerable<Owner>>> GetOwnerByCate(int id)
+        {
+            var owner = await _context.Owners
+                .Where(x => x.Animal.AnimalTypeId == id).Include(x => x.Animal).ToListAsync();
+
+            if (owner == null)
+            {
+                return NotFound();
+            }
+
+            return owner;
+        }
+
 
         // PUT: api/Owners/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -72,6 +87,8 @@ namespace PetinyAPI.Controllers
 
             return NoContent();
         }
+
+
 
         // POST: api/Owners
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
