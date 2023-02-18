@@ -196,12 +196,6 @@ namespace PetinyAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Request")
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlImage")
-=======
->>>>>>> 5e6894a3e3dfaad0d022516528abf1bded599493
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")

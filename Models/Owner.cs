@@ -17,6 +17,10 @@ namespace PetinyAPI.Models
 
         public string? Request { get; set; }
 
+
+        public string? UrlImage { get; set; }
+
+
         //Key for User
         public int UserId { get; set; }
 
