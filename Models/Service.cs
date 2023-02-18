@@ -7,13 +7,16 @@ namespace PetinyAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Status { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? Status { get; set; }
 
         public double Price { get; set; }
 
         public string? UrlImage { get; set; }
+
+        public Boolean IsCareService { get; set; }
+
         public ICollection<OrderDetail>? OrderDetails { get; set; }
 
         public ICollection<Category>? Categories { get; set; }
@@ -21,7 +24,7 @@ namespace PetinyAPI.Models
         public int ShopId { get; set; }
 
         [JsonIgnore]
-        public Shop Shop { get; set; }
+        public Shop? Shop { get; set; }
 
     }
 }

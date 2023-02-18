@@ -14,6 +14,7 @@ namespace PetinyAPI.Models
 
         //Key for user
         public int UserId { get; set; }
+
         [JsonIgnore]
         public User? User { get; set; }
      
@@ -22,6 +23,9 @@ namespace PetinyAPI.Models
 
         [JsonIgnore]
         public Payment? Payment { get; set; }
+
+
+
 
         //key for OderDetail
         public ICollection<OrderDetail>? OrderDetails { get; set; }

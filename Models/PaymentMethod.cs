@@ -7,9 +7,9 @@ namespace PetinyAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonIgnore]
-        public Payment? Payment { get; set; }
+        public List<Payment>? Payments { get; set; }
     }
 }
