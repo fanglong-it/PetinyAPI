@@ -12,6 +12,12 @@ namespace PetinyAPI.Models
 
         public string Date { get; set; }
 
+        public string Contact { get; set; }
+
+
+        public string Request { get; set; }
+
+
         //Key for User
         public int UserId { get; set; }
 

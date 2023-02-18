@@ -10,6 +10,6 @@ namespace PetinyAPI.Models
         public string Name { get; set; }
 
         [JsonIgnore]
-        public Payment Payment { get; set; }
+        public Payment? Payment { get; set; }
     }
 }

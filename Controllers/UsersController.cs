@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Versioning;
 using PetinyAPI.Models;
 
 namespace PetinyAPI.Controllers
@@ -84,6 +85,20 @@ namespace PetinyAPI.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        }
+
+
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> LoginUser(String phone, String password)
+        {
+            var user = await _context.Users
+                 .Where(x => x.Phone == phone && x.Password == password)
+                 .FirstOrDefaultAsync();
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return user;
         }
 
         // DELETE: api/Users/5
