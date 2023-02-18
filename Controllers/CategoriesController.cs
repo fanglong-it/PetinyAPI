@@ -41,6 +41,21 @@ namespace PetinyAPI.Controllers
             return category;
         }
 
+
+        [HttpGet("GetCategoryByType/{status}")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategory(Boolean status)
+        {
+            var category = await _context.Categories
+                .Where(x => x.IsCareService == status).ToListAsync();
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return category;
+        }
+
         // PUT: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
