@@ -41,6 +41,12 @@ namespace PetinyAPI.Controllers
             return shop;
         }
 
+
+        [HttpGet("ViewOrder")]
+        public async Task<ActionResult<IEnumerable<Order>>> viewOrder(){
+            return await _context.Orders.Include(x => x.OrderDetails).ToListAsync();
+         }
+
         // PUT: api/Shops/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
