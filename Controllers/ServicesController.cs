@@ -90,13 +90,28 @@ namespace PetinyAPI.Controllers
 
 
 
-        [HttpGet("GetSpecialService")]
-        public async Task<ActionResult<IEnumerable<Service>>> GetSpecialService()
+        [HttpGet("GetSpecialServiceIsCare")]
+        public async Task<ActionResult<IEnumerable<Service>>> GetSpecialServiceIsCare()
         {
 
+            var service = await _context.Services
+                .Where(x => x.IsCareService == true)
+                    .OrderByDescending(x => x.OrderDetails.Sum(od=> od.Qty)).Take(3).ToListAsync();
+            if (service == null)
+            {
+                return NotFound();
+            }
 
-            var service = await _context.Services.OrderByDescending(x => x.OrderDetails.Sum(od => od.Qty)).Take(5).ToListAsync();
+            return service;
+        }
 
+        [HttpGet("GetSpecialServiceNotCare")]
+        public async Task<ActionResult<IEnumerable<Service>>> GetSpecialServiceNotCare()
+        {
+
+            var service = await _context.Services
+                .Where(x => x.IsCareService == false)
+                .OrderByDescending(x => x.OrderDetails.Sum(od => od.Qty)).Take(3).ToListAsync();
             if (service == null)
             {
                 return NotFound();
