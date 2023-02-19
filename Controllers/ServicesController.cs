@@ -59,6 +59,22 @@ namespace PetinyAPI.Controllers
             return service;
         }
 
+        [HttpGet("GetServiceByShop/{id}")]
+        public async Task<ActionResult<IEnumerable<Service>>> GetServiceByShop(int id)
+        {
+            var service = await _context.Services
+                .Where(x => x.ShopId == id).ToListAsync();
+
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return service;
+        }
+
+
+
         [HttpGet("GetSpecialService")]
         public async Task<ActionResult<IEnumerable<Service>>> GetSpecialService()
         {

@@ -318,3 +318,4 @@ E:\Source Code\.Net & C# Programing\Learn\api\PetinyAPI\obj\Debug\net6.0\refint\
 E:\Source Code\.Net & C# Programing\Learn\api\PetinyAPI\obj\Debug\net6.0\PetinyAPI.pdb
 E:\Source Code\.Net & C# Programing\Learn\api\PetinyAPI\obj\Debug\net6.0\PetinyAPI.genruntimeconfig.cache
 E:\Source Code\.Net & C# Programing\Learn\api\PetinyAPI\obj\Debug\net6.0\ref\PetinyAPI.dll
+E:\Source Code\.Net & C# Programing\Learn\api\PetinyAPI\bin\Debug\net6.0\RabbitMQ.Client.dll
