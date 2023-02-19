@@ -73,6 +73,21 @@ namespace PetinyAPI.Controllers
             return service;
         }
 
+        [HttpGet("GetServiceNotCare")]
+        public async Task<ActionResult<IEnumerable<Service>>> GetServiceNotCare()
+        {
+            var service = await _context.Services
+                    .Where(x=> x.IsCareService == false).ToListAsync();
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return service;
+        }
+
+
+
 
 
         [HttpGet("GetSpecialService")]
