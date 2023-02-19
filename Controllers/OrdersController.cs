@@ -27,6 +27,7 @@ namespace PetinyAPI.Controllers
         {
             return await _context.Orders
                 .Include(x => x.OrderDetails)
+                .Include(x=> x.User)
                 .ToListAsync();
         }
 

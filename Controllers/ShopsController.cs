@@ -44,7 +44,7 @@ namespace PetinyAPI.Controllers
 
         [HttpGet("ViewOrder")]
         public async Task<ActionResult<IEnumerable<Order>>> viewOrder(){
-            return await _context.Orders.Include(x => x.OrderDetails).ToListAsync();
+            return await _context.Orders.Include(x => x.OrderDetails).Include(x => x.User).ToListAsync();
          }
 
         // PUT: api/Shops/5

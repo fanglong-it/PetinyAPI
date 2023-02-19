@@ -16,7 +16,6 @@ namespace PetinyAPI.Models
         //Key for user
         public int UserId { get; set; }
 
-        [JsonIgnore]
         public User? User { get; set; }
 
 

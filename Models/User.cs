@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace PetinyAPI.Models
 {
@@ -15,6 +16,7 @@ namespace PetinyAPI.Models
         public string? Phone { get; set; }
 
 
+        [JsonIgnore]
         public ICollection<Order>? Orders { get; set; }
 
         public ICollection<Owner>? Owner { get; set; }
